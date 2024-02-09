@@ -1,3 +1,3 @@
 # MyWebPack
  
-Start  project: npm run build
+Start autocompilation project : npm run start
