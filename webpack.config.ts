@@ -10,6 +10,7 @@ type Mode = 'production' | 'development';
 interface EnvVariables {
   mode:BuildMode;
   port:number;
+  analyzer?: boolean;
 }
 
 export default (env: EnvVariables) => {
@@ -25,6 +26,7 @@ const paths:BuildPaths = {
     port: env.port ?? 3000,
     mode: env.mode ?? 'development',
     paths,
+    analyzer: env.analyzer,
   });
     return   config;
     
