@@ -3,14 +3,15 @@ import  path from 'path';
 import  webpack from 'webpack';
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import {buildWebpack}  from './config/build/buildWebpack';
-import { BuildMode, BuildPaths } from './config/build/types/types';
+import { BuildMode, BuildPaths, BuildPlatform } from './config/build/types/types';
 
 type Mode = 'production' | 'development';
 
 interface EnvVariables {
-  mode:BuildMode;
-  port:number;
+  mode?:BuildMode;
+  port?:number;
   analyzer?: boolean;
+  platform?: BuildPlatform;
 }
 
 export default (env: EnvVariables) => {
@@ -27,6 +28,7 @@ const paths:BuildPaths = {
     port: env.port ?? 3000,
     mode: env.mode ?? 'development',
     paths,
+    platform: env.platform ?? 'desktop',
     analyzer: env.analyzer,
   });
     return   config;

@@ -12,6 +12,7 @@ export const App = () => {
     const increment = () => setCount(prev => prev+1);
   return (
     <div>
+      <h1>PLATFORM = {__PLATFORM__}</h1>
       <div>
       <img width='100' src={cityPng} alt="city" />
       <img width='100' src={flagJpg} alt="city" />
