@@ -4,6 +4,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import webpack, { Configuration, DefinePlugin} from "webpack"
 import { BuildOptions } from "./types/types"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 
 
@@ -22,7 +23,8 @@ export function buildPlugins({mode, paths, analyzer, platform}:BuildOptions): Co
 if(isDev){
   plagins.push(new webpack.ProgressPlugin());
    /*Окрема перевірка типів для прискорення збірки*/
-   plagins.push(new ForkTsCheckerWebpackPlugin())
+   plagins.push(new ForkTsCheckerWebpackPlugin());
+   plagins.push (new ReactRefreshWebpackPlugin());
 }
 
 if(isProd){
