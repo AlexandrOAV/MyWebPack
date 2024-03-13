@@ -1,8 +1,10 @@
+import  ForkTsCheckerWebpackPlugin  from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import webpack, { Configuration, DefinePlugin} from "webpack"
 import { BuildOptions } from "./types/types"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+
 
 
 export function buildPlugins({mode, paths, analyzer, platform}:BuildOptions): Configuration['plugins'] {
@@ -13,11 +15,14 @@ export function buildPlugins({mode, paths, analyzer, platform}:BuildOptions): Co
     new HtmlWebpackPlugin ({ template: paths.html }),
     new DefinePlugin({
       __PLATFORM__:JSON.stringify(platform)
-    })
+    }),
+   
     ];
 
 if(isDev){
   plagins.push(new webpack.ProgressPlugin());
+   /*Окрема перевірка типів для прискорення збірки*/
+   plagins.push(new ForkTsCheckerWebpackPlugin())
 }
 
 if(isProd){
